@@ -1,0 +1,71 @@
+<launch>
+<group ns="ns1">
+  <node  name="rslidar_node" pkg="rslidar_driver" type="rslidar_node" output="screen" >
+    <param name="model" value="RS16"/>
+    <!--param name="pcap" value="/home/tony-sti/lidar_data/lm75-170616-roadtest.pcap"/ -->
+    <param name="device_ip" value="192.168.1.202" />
+    <param name="msop_port" value="6688"/>
+    <param name="difop_port" value="7799"/>
+	<param name="frame_id" value="rs_lidar_right"/>
+  </node>
+
+  <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+    <param name="model" value="RS16"/>
+    <param name="curves_path" value="$(find rslidar_pointcloud)/data/lidar1/curves.csv" />
+    <param name="angle_path" value="$(find rslidar_pointcloud)/data/lidar1/angle.csv" />
+    <param name="channel_path" value="$(find rslidar_pointcloud)/data/lidar1/ChannelNum.csv" />
+  </node>
+</group>
+
+<group ns="ns2">
+  <node  name="rslidar_node" pkg="rslidar_driver" type="rslidar_node" output="screen" >
+    <param name="model" value="RS16"/>
+    <!--param name="pcap" value="/home/tony-sti/lidar_data/lm75-170616-roadtest.pcap"/ -->
+    <param name="device_ip" value="192.168.1.201"/>
+    <param name="msop_port" value="6699"/>
+    <param name="difop_port" value="7788"/>
+    <param name="frame_id" value="rs_lidar_left"/>
+  </node>
+	
+  <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+    <param name="model" value="RS16"/>
+    <param name="curves_path" value="$(find rslidar_pointcloud)/data/lidar2/curves.csv" />
+    <param name="angle_path" value="$(find rslidar_pointcloud)/data/lidar2/angle.csv" />
+    <param name="channel_path" value="$(find rslidar_pointcloud)/data/lidar2/ChannelNum.csv" />
+  </node>
+</group>
+<group ns="ns3">
+	<arg name="pcap_file"  default=""/>
+	<arg name="server_ip" default=""/>
+	<arg name="server_port"  default="9870"/>
+	<arg name="lidar_recv_port"  default="2368"/>
+	<arg name="gps_port"  default="10110"/>
+	<arg name="start_angle"  default="0"/>
+	<arg name="laser_return_type"  default="1"/>
+	<arg name="laser_count"  default="40"/>
+	<arg name="pcldata_type"  default="0"/>
+	<arg name="lidar_correction_file"  default="$(find hesai_lidar)/config/correction.csv"/>
+	<arg name="calibration_file"  default="$(find hesai_lidar)/config/calibration.yml"/>
+	<arg name="rviz"  default="false"/>
+
+	<node pkg="hesai_lidar" name="hesai_lidar" type="hesai_lidar_node" output="screen" >
+		<param name="pcap_file" type="string" value="$(arg pcap_file)"/>
+		<param name="server_ip" type="string" value="$(arg server_ip)"/>
+		<param name="server_port"  type="int" value="$(arg server_port)"/>
+		<param name="lidar_recv_port"  type="int" value="$(arg lidar_recv_port)"/>
+		<param name="gps_port"  type="int" value="$(arg gps_port)"/>
+		<param name="start_angle"  type="double" value="$(arg start_angle)"/>
+		<param name="calibration_file" type="string" value="$(arg calibration_file)"/>
+		<param name="lidar_correction_file"  type="string" value="$(arg lidar_correction_file)"/>
+		<param name="laser_return_type"  type="int" value="$(arg laser_return_type)"/>
+		<param name="laser_count"  type="int" value="$(arg laser_count)"/>
+		<param name="pcldata_type"  type="int" value="$(arg pcldata_type)"/>
+	</node>
+</group>
+
+
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find rslidar_pointcloud)/rviz_cfg/rslidar.rviz" />
+  <node name="tf_right_lidar" pkg="tf" type="static_transform_publisher" args="-0.0794421  -0.6    -0.272642   -3.14885 -3.127 -2.37181 pandar rs_lidar_right 20"/>
+    <node name="tf_left_lidar" pkg="tf" type="static_transform_publisher" args="-0.0309343  0.6 -0.272642  3.10685 -3.127  2.37681 pandar rs_lidar_left  20"/>
+  
+</launch>
