@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="deal_point" type="deal_point_node" name="deal_point_node" output="screen">
+    <param name="sub_topic" value="/pandar_points_no_ground"/>
+    <param name="pub_ground_topic" value="/fusion_points_ground"/>
+    <param name="pub_no_ground_topic" value="/fusion_points_no_ground"/>
+    </node>
+</launch>

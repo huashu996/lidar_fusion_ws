@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="points_freespace_extractor" type="points_freespace_extractor_node" name="points_freespace_extractor_node" output="screen">
+        <param name="sub_topic" value="/fusion_points_no_ground"/>
+        <param name="pub_marker_topic" value="/feasible_region"/>
+        
+        <param name="show_points_size" value="true"/>
+        <param name="show_time" value="true"/>
+        
+        <param name="sensor_height" value="2.0"/>
+        <param name="radius_divider" value="0.15"/>
+        <param name="theta_divider" value="0.4"/>
+        <param name="curb_height_threshold" value="0.2"/>
+        <param name="general_slope_threshold" value="4.0"/>
+        <param name="passable_width" value="2.0"/>
+    </node>
+</launch>

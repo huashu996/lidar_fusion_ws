@@ -1,0 +1,25 @@
+<!-- -->
+<launch>
+    <arg name="points_parent_src" default="/ns3/pandar_points" />
+    <arg name="points_child_src" default="/ns1/rslidar_points" />
+    <arg name="init_params_file_path" default="$(find multi_lidar_calibrator)/cfg/child_topic_list"/>
+    <arg name="voxel_size" default="0.1" />
+    <arg name="ndt_epsilon" default="0.1" />
+    <arg name="ndt_step_size" default="0.1" />
+    <arg name="ndt_resolution" default="0.5" />
+    <arg name="ndt_iterations" default="100" />
+
+    <node pkg="multi_lidar_calibrator" type="multi_lidar_calibrator" name="lidar_calibrator" output="screen">
+        <param name="points_parent_src" value="$(arg points_parent_src)" />
+        <param name="points_child_src" value="$(arg points_child_src)" />
+        <param name="init_params_file_path" value="$(arg init_params_file_path)" />
+        <param name="voxel_size" value="$(arg voxel_size)" />
+        <param name="ndt_epsilon" value="$(arg ndt_epsilon)" />
+        <param name="ndt_step_size" value="$(arg ndt_step_size)" />
+        <param name="ndt_resolution" value="$(arg ndt_resolution)" />
+        <param name="ndt_iterations" value="$(arg ndt_iterations)" />
+        
+        <param name="points_calibrated" value="/points_calibrated" />
+    </node>
+
+</launch>

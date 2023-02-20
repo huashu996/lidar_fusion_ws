@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="multiple_target_tracking" type="multiple_target_tracking_node" name="multiple_target_tracking_node" output="screen">
+        <param name="sub_topic" value="/objects"/>
+        <param name="pub_topic" value="/objects_tracked"/>
+        <param name="pub_topic_obstacle_array" value="/obstacle_array"/>
+        <param name="frame_id" value="pandar"/>
+        
+        <param name="show_objects_num" value="true"/>
+        <param name="show_time" value="true"/>
+
+        <param name="time_interval" value="0.1"/>
+        <param name="gate_threshold" value="400"/>
+        <param name="blind_update_limit" value="1"/>
+        
+        <param name="sigma_ax" value="1"/>
+        <param name="sigma_ay" value="1"/>
+        <param name="sigma_ox" value="0.1"/>
+        <param name="sigma_oy" value="0.1"/>
+        
+        <param name="min_scale" value="0.0"/>
+        <param name="max_scale" value="6.0"/>
+        <param name="min_height" value="0.0"/>
+        <param name="max_height" value="2.5"/>
+    </node>
+</launch>

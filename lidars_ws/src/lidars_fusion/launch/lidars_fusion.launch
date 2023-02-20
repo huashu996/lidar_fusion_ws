@@ -1,0 +1,14 @@
+<!-- -->
+
+<launch>
+  <!-- transformation between lidar and base_link -->
+  <node pkg="lidars_fusion" type="lidars_fusion_node" name="lidars_fusion" output="screen">
+      <param name="left_lidar_topic" value="/ns2/rslidar_points" />
+      <param name="right_lidar_topic" value="/ns1/rslidar_points" />
+      <param name="pandar_lidar_topic" value="/ns3/pandar_points" />
+      <param name="fusion_topic" value="/fusion_rslidar_points" />
+      <param name="regr_fusion_topic" value="/regr_fusion_rslidar_points" />
+
+  </node>
+  
+</launch>
