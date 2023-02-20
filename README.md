@@ -4,7 +4,7 @@
 multi_lidars_calibration-NDT为多激光雷达标定的功能包
 ### 安装编译启动
 ```
-	git clone git@github.com:huashu996/lidar_fusion_ws.git
+	git clone git@github.com:huashu996/lidar_fusion_ws.git --recursive
 	cd lidars_ws
 	catkin_make
 	source devel/setup.bash
