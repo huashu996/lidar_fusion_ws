@@ -596,6 +596,7 @@ void EuCluster::callback(const sensor_msgs::PointCloud2ConstPtr in)
 
         objs.markers[i].lifetime = ros::Duration(0.1);
         objs.markers[i].text = ' ';
+        std::cout <<objs.markers[i].pose<<std::endl;
     }
     pub_.publish(objs);
 

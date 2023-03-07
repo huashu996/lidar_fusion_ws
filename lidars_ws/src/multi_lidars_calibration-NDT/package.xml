@@ -4,7 +4,7 @@
     <version>1.11.0</version>
     <description>get extrinsic calibration between multi lidar sensors</description>
 
-    <maintainer email="zebang.shen@daimler.com">adamshan</maintainer>
+    <maintainer email="">adamshan</maintainer>
 
     <license>Apache 2</license>
 
